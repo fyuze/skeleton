@@ -1,7 +1,5 @@
 <?php
 // app/routing.php
-use Fyuze\Http\Request;
-use Fyuze\Http\Response;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 
