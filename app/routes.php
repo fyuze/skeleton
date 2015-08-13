@@ -3,6 +3,4 @@
 
 use Fyuze\Http\Response;
 
-$router->get('', 'index', function() {
-   return new Response('Welcome to Fyuze!');
-});
+$router->get('', 'index', 'App\Http\Controllers\HomeController@indexAction');
