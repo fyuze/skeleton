@@ -1,6 +1,5 @@
 <?php
 // app/routing.php
 
-use Fyuze\Http\Response;
-
 $router->get('', 'index', 'App\Http\Controllers\HomeController@indexAction');
+$router->get('/hello/{name}', 'hello', 'App\Http\Controllers\HomeController@helloAction');

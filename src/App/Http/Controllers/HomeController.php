@@ -9,4 +9,9 @@ class HomeController
     {
         return new Response('Welcome to Fyuze!');
     }
+
+    public function helloAction($name)
+    {
+        return new Response(sprintf('Hello, %s!', $name));
+    }
 }
