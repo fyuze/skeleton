@@ -31,4 +31,17 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('Hello, Matthew!', $response->getBody());
     }
+
+    public function testAppResolvesDatabaseService()
+    {
+        $path = realpath(__DIR__ . '/../../../');
+        $app = new Web($path);
+        $_SERVER['REQUEST_URI'] = '/database';
+        $response = $app->boot();
+        unset($_SERVER['REQUEST_URI']);
+
+        $this->assertInstanceOf('Fyuze\Http\Response', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals('{"name":"matthew"}', $response->getBody());
+    }
 }
