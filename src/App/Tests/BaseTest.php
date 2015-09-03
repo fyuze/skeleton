@@ -16,7 +16,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         $app->getContainer()->dump();
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
-        //$this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('Welcome to Fyuze!', $response->getBody());
 
     }
@@ -28,6 +28,8 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_URI'] = '/hello/Matthew';
         $response = $app->boot();
         unset($_SERVER['REQUEST_URI']);
+
+        $app->getContainer()->dump();
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -44,6 +46,6 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        //$this->assertEquals('{"name":"matthew"}', $response->getBody());
+        $this->assertEquals('{"name":"matthew"}', $response->getBody());
     }
 }
