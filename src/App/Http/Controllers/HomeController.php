@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Fyuze\Database\Db;
 use Fyuze\Http\Response;
+use Fyuze\Kernel\Registry;
 
 class HomeController
 {
@@ -10,6 +11,16 @@ class HomeController
      * @var Registry
      */
     protected $registry;
+
+    /**
+     * HomeController constructor.
+     *
+     * @param Registry $registry
+     */
+    public function __construct(Registry $registry)
+    {
+        $this->registry = $registry;
+    }
 
     /**
      * Basic GET route action
