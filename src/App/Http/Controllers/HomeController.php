@@ -1,11 +1,16 @@
 <?php
 namespace App\Http\Controllers;
 
+use Fyuze\Database\Db;
 use Fyuze\Http\Response;
-use Fyuze\Kernel\Registry;
 
 class HomeController
 {
+    /**
+     * @var Registry
+     */
+    protected $registry;
+
     /**
      * Basic GET route action
      *
@@ -29,16 +34,16 @@ class HomeController
 
     /**
      * Temporary method for db interaction
+     *
+     * @param Db $db
+     * @return Response
      */
-    public function databaseAction()
+    public function databaseAction(Db $db)
     {
-        /** @var \Fyuze\Database\Db $db */
-        $db = Registry::init()->make('Fyuze\Database\Db');
-
         $db->query('CREATE TABLE users(name varchar(255));');
         $db->query('INSERT INTO users VALUES (?)', ['matthew']);
 
-        $results = $db->query("SELECT * FROM users WHERE name = ?", ['matthew'])->first();
+        $results = $db->first("SELECT * FROM users WHERE name = ?", ['matthew']);
 
         return new Response(json_encode($results));
     }
