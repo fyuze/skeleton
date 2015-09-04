@@ -5,7 +5,7 @@ return [
     'timezone' => 'UTC',
     'charset' => 'utf-8',
     'services' => [
-
+        'Fyuze\Kernel\Services\Database'
     ],
     'modules' => [
 
