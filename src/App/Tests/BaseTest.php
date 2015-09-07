@@ -9,6 +9,11 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 {
     public function testAppWorks()
     {
+
+        // Will eventually be
+        // $request = $this->createRequest('/');
+        // $this->assertResponse(200);
+        //
         $path = realpath(__DIR__ . '/../../../');
         $app = new Web($path);
         $response = $app->boot();
