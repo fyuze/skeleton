@@ -1,6 +1,10 @@
 <?php
-define('APP_START', microtime(true));
-define('APP_PATH', __DIR__);
-define('BASE_PATH', APP_PATH . '/../');
+// Probably best to leave this here
+$container = $app->getContainer();
 
-require BASE_PATH . '/vendor/autoload.php';
+// Add debug toolbar
+if ($container->make('config')->get('app.debug') === true) {
+    $container->make('response')->modify(function ($body) use ($container) {
+        return str_replace('</body>', $container->make('toolbar')->render() . '</body>', $body);
+    });
+}

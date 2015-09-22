@@ -22,7 +22,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('Welcome to Fyuze!', $response->getBody());
+        $this->assertEquals('<body>Welcome to Fyuze!</body>', (string) $response->getBody());
 
     }
 
@@ -38,7 +38,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('Hello, Matthew!', $response->getBody());
+        $this->assertEquals('<body>Hello, Matthew!</body>', (string) $response->getBody());
     }
 
     public function testAppResolvesDatabaseService()
@@ -51,6 +51,6 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('{"name":"matthew"}', $response->getBody());
+        $this->assertEquals('<body>{"name":"matthew"}</body>', (string) $response->getBody());
     }
 }

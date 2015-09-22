@@ -29,7 +29,7 @@ class HomeController
      */
     public function indexAction()
     {
-        return new Response('Welcome to Fyuze!');
+        return new Response('<body>Welcome to Fyuze!</body>');
     }
 
     /**
@@ -40,7 +40,7 @@ class HomeController
      */
     public function helloAction($name)
     {
-        return new Response(sprintf('Hello, %s!', $name));
+        return new Response(sprintf('<body>Hello, %s!</body>', $name));
     }
 
     /**
@@ -56,6 +56,6 @@ class HomeController
 
         $results = $db->first("SELECT * FROM users WHERE name = ?", ['matthew']);
 
-        return new Response(json_encode($results));
+        return new Response('<body>' . json_encode($results) . '</body>');
     }
 }
