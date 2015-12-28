@@ -2,26 +2,11 @@
 namespace App\Http\Controllers;
 
 use Fyuze\Database\Db;
+use Fyuze\Http\Message\Stream;
 use Fyuze\Http\Response;
-use Fyuze\Kernel\Registry;
 
 class HomeController
 {
-    /**
-     * @var Registry
-     */
-    protected $registry;
-
-    /**
-     * HomeController constructor.
-     *
-     * @param Registry $registry
-     */
-    public function __construct(Registry $registry)
-    {
-        $this->registry = $registry;
-    }
-
     /**
      * Basic GET route action
      *
@@ -29,7 +14,7 @@ class HomeController
      */
     public function indexAction()
     {
-        return new Response('<body>Welcome to Fyuze!</body>');
+        return '<body>Welcome to Fyuze!</body>';
     }
 
     /**
@@ -40,7 +25,7 @@ class HomeController
      */
     public function helloAction($name)
     {
-        return new Response(sprintf('<body>Hello, %s!</body>', $name));
+        return Response::create(sprintf('<body>Hello, %s!</body>', $name));
     }
 
     /**
@@ -56,6 +41,15 @@ class HomeController
 
         $results = $db->first("SELECT * FROM users WHERE name = ?", ['matthew']);
 
-        return new Response('<body>' . json_encode($results) . '</body>');
+        /** Psr7 example */
+
+        $stream = new Stream('php://memory', 'wb+');
+        $stream->write(json_encode($results));
+
+        return (new Response)
+                ->withStatus(200)
+                ->withBody($stream)
+                ->withHeader('Content-Type', 'application/json');
+
     }
 }
