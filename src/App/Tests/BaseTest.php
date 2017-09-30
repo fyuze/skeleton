@@ -1,11 +1,11 @@
 <?php
+
 namespace App\Tests;
 
-use Fyuze\Http\Request;
 use Fyuze\Kernel\Application\Web;
-use Fyuze\Kernel\Registry;
+use PHPUnit\Framework\TestCase;
 
-class BaseTest extends \PHPUnit_Framework_TestCase
+class BaseTest extends TestCase
 {
     public function testAppWorks()
     {
@@ -21,7 +21,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('<body>Welcome to Fyuze!</body>', (string) $response->getBody());
+        $this->assertEquals('<body>Welcome to Fyuze!</body>', (string)$response->getBody());
     }
 
     public function testAppLoadsSecondaryRoute()
@@ -36,7 +36,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('<body>Hello, Matthew!</body>', (string) $response->getBody());
+        $this->assertEquals('<body>Hello, Matthew!</body>', (string)$response->getBody());
     }
 
     public function testAppResolvesDatabaseService()
@@ -49,6 +49,6 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Fyuze\Http\Response', $response);
         //$this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('{"name":"matthew"}', (string) $response->getBody());
+        $this->assertEquals('{"name":"matthew"}', (string)$response->getBody());
     }
 }
