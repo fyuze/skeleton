@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
-         backupStaticAttributes="false"
+         displayDetailsOnTestsThatTriggerDeprecations="false"
+         displayDetailsOnPhpunitDeprecations="false"
          bootstrap="vendor/autoload.php"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false"
-         syntaxCheck="false">
+         stopOnFailure="false">
     <testsuites>
         <testsuite name="Framework Test Suite">
             <directory>./src/*/Tests/</directory>
@@ -17,9 +14,11 @@
     <php>
         <env name="APP_ENV" value="testing"/>
     </php>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
+    <source
+            restrictNotices="true"
+            restrictWarnings="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+    </source>
 </phpunit>

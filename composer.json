@@ -7,8 +7,8 @@
 	"fyuze/framework": "dev-master"
   },
   "require-dev": {
-	"phpunit/phpunit": "6.3.*",
-    "doctrine/instantiator": "1.0.5"
+	"phpunit/phpunit": "^3.7",
+    "doctrine/instantiator": "1.5.x-dev"
   },
   "autoload": {
 	"psr-4": {
